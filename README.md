@@ -7,7 +7,7 @@ We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Goole Cloud Pl
 ### Table of contents:
 - [`kubectl`](topics/kubectl.md)
 - [Deploy a pod](topics/pod-deployment/pod-deployment.md)
-- Label & Annotation
+- ConfigMap
 - Make it accessible externally
 - Service vs. Ingress
 - Networking
@@ -15,3 +15,4 @@ We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Goole Cloud Pl
 - Security
 - HA
 - Monitoring
+- Helm
