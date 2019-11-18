@@ -7,11 +7,11 @@ We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Goole Cloud Pl
 ### Table of contents:
 - [`kubectl`](topics/kubectl.md)
 - [Deploy a pod](topics/pod-deployment/pod-deployment.md)
-- ConfigMap
-- Make it accessible externally
+- ConfigMap & Secret
+- Volumes
 - Service vs. Ingress
 - Networking
-- Volumes
+- DeamonSet
 - Security
 - HA
 - Monitoring
