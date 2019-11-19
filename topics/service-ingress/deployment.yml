@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-rest-service-dep
+  labels:
+    service-dep: rest-service-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service-pod: simple-rest-service-pod
+  template:
+    metadata:
+      labels:
+        service-pod: simple-rest-service-pod
+    spec:
+      containers:
+        - name: rest-service
+          image: eu.gcr.io/abiding-orb-258221/diego-puzza@sha256:97a89a9cf618e09bd14155cade3b14365e37d0cbccd12eaf445b260595344994
+          ports:
+            - containerPort: 3000

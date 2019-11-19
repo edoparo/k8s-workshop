@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: simple-rest-service-ingress
+spec:
+  rules:
+    - host: diegopuzza.com
+      http:
+        paths:
+          - backend:
+              serviceName: simple-rest-service-svc
+              servicePort: 3000
+            path: /
+  tls:
+    - secretName: cert-secret
