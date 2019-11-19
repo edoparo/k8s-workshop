@@ -7,8 +7,8 @@ We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Goole Cloud Pl
 ### Table of contents:
 - [`kubectl`](topics/kubectl.md)
 - [Deploy a pod](topics/pod-deployment/pod-deployment.md)
-- ConfigMap & Secret
-- Volumes
+- [Volumes](topics/volumes/volumes.md)
+- [ConfigMap & Secret](topics/config-secrets/config-secrets.md)
 - Service vs. Ingress
 - Networking
 - DeamonSet
