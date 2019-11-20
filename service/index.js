@@ -4,7 +4,7 @@ const pinoms = require('pino-multi-stream');
 const projectId = 'abiding-orb-258221';
 const writeStream = stackdriver.createWriteStream({ projectId, logName:'testservice' });
 const MongoClient = require('mongodb').MongoClient;
-const {mongo_url} = require('./config');
+const {mongo_url} = require('./conf/config');
 const {MONGO_ROOT_USERNAME:username, MONGO_ROOT_PASSWORD:password} = process.env;
 
 // Connection URL

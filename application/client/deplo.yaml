@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-rest
+  labels:
+    service: service-rest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service-pod: service-rest-pod
+  template:
+    metadata:
+      labels:
+        service-pod: service-rest-pod
+    spec:
+      containers:
+        - name: service-rest
+          image: eu.gcr.io/abiding-orb-258221/diego-puzza@sha256:0b3224032a9d7169decbc0e398158d4ba0e0ca09b6c3df48acbf59326566b870
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: MONGO_ROOT_USERNAME
+            - name: MONGO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: MONGO_ROOT_PASSWORD
+          volumeMounts:
+            - name: rest-conf
+              mountPath: /usr/src/app/conf
+      volumes:
+        - name: rest-conf
+          configMap:
+            name: service-rest-conf
