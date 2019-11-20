@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rest-service-ingress
+spec:
+  rules:
+    - host: diegopuzza.com
+      http:
+        paths:
+          - backend:
+              serviceName: rest-serv
+              servicePort: 3000
+            path: /
+  tls:
+    - secretName: cert-secret
