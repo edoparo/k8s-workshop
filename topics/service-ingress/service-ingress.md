@@ -16,3 +16,8 @@ k create secret tls cert-secret --key ./tls.key --cert ./tls.crt
 [service.yml](service.yml)
 
 [ingress.yml](ingress.yml)
+
+
+https://cloud.google.com/community/tutorials/nginx-ingress-gke
+
+https://github.com/helm/charts/tree/master/stable/cert-manager
