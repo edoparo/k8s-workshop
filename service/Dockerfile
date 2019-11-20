@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 
 
 COPY package.json .
+COPY package-lock.json .
+RUN mkdir conf
 COPY index.js .
 RUN npm install --loglevel notice
 
