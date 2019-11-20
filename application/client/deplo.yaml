@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: service-rest
-          image: eu.gcr.io/abiding-orb-258221/diego-puzza@sha256:0b3224032a9d7169decbc0e398158d4ba0e0ca09b6c3df48acbf59326566b870
+          image: eu.gcr.io/abiding-orb-258221/diego-puzza@sha256:6192569ea67be97d4e77b59757b26119caf133c51f372cbd2ddf2010033b39d1
           ports:
             - containerPort: 3000
           env:
