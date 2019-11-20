@@ -1,0 +1,19 @@
+{
+  "name": "DiegoPuzza",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pino": "^5.13.5",
+    "pino-multi-stream": "^4.2.0",
+    "pino-stackdriver": "^1.2.9"
+  }
+}
