@@ -31,6 +31,7 @@ const logger = pinoms({ streams: [
 });
 
 logger.info('Starting test service');
+logger.info('url is: ' + url);
 
 const app = express();
 const port = 3000;
