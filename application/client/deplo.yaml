@@ -33,6 +33,11 @@ spec:
           volumeMounts:
             - name: rest-conf
               mountPath: /usr/src/app/conf
+          resources:
+            limits:
+              cpu: "50m"
+            requests:
+              cpu: "50m"
       volumes:
         - name: rest-conf
           configMap:
