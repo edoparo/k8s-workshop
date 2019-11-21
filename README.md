@@ -10,9 +10,8 @@ We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Goole Cloud Pl
 - [Volumes](topics/volumes/volumes.md)
 - [ConfigMap & Secret](topics/config-secrets/config-secrets.md)
 - [Service & Ingress](topics/service-ingress/service-ingress.md)
-- Install different ingress controller
 - Resource limits
-- Helm
+- Helm & Tiller
 - Networking
 - DeamonSet
 - Security
