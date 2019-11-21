@@ -10,4 +10,4 @@ spec:
   selector:
     service-pod: simple-rest-service-pod
   sessionAffinity: None
-  type: ClusterIP
+  type: NodePort

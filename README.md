@@ -2,7 +2,7 @@
 
 This workshop is intended to explore Kubernetes, assuming to have a working Kubernetes instance. 
 
-We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Goole Cloud Platform)`
+We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Google Cloud Platform)`
 
 ### Table of contents:
 - [`kubectl`](topics/kubectl.md)
@@ -10,7 +10,6 @@ We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Goole Cloud Pl
 - [Volumes](topics/volumes/volumes.md)
 - [ConfigMap & Secret](topics/config-secrets/config-secrets.md)
 - [Service & Ingress](topics/service-ingress/service-ingress.md)
-- Resource limits
 - Helm & Tiller
 - Networking
 - DeamonSet

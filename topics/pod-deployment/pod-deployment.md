@@ -95,3 +95,22 @@ and even delete with
 
 Here is the full [documentation](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) about autoscaling
 
+## Resources Limits & Requests
+
+Very often, will be required to adjust resources (CPU and Memory) to a deployment. To do so, you will add the following snippet to the deployment under the `.spec.containers[X]`:
+
+```yaml
+resources:
+  limits:
+    cpu: 100m
+    memory: 1Gi
+  requests:
+    cpu: 50m
+    memory: 500Mi
+``` 
+
+`Requests` are what the container is guaranteed to get. If a container requests a resource, Kubernetes will only schedule it on a node that can give it that resource. `Limits`, on the other hand, make sure a container never goes above a certain value. The container is only allowed to go up to the limit, and then it is restricted.
+
+`CPU` resources are defined in `millicores`. If your container needs two full cores to run, you would put the value “2000m”. If your container only needs ¼ of a core, you would put a value of “250m”.
+
+`Memory` is represented by [`Mebibyte`](https://en.wikipedia.org/wiki/Mebibyte); you can assign values from `byte` to `pebibyte`.
