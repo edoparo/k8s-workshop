@@ -184,7 +184,7 @@ resources:
 
 # ConfigMap
 
-ConfigMap allows to separate configurations from the container image.
+[ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) allows to separate configurations from the container image.
 
 For instance let's say we have `foo.properties` and `baz.properties`. We can run the creation command  using `--from-file` and see the result:
 
@@ -258,3 +258,32 @@ You can also set the property `items` in order to get only the file you actually
 ---
 
 # Secrets
+
+[Secrets](https://cloud.google.com/kubernetes-engine/docs/concepts/secret) contains a small amount of sensitive data such as a password, a token, or a key
+
+Secrets can be created through a YAML file or through `kubectl` by running `kubectl create secret type name data`:
+
+```shell
+$ k create secret generic psw --from-file=topics/config-secrets/psw.txt
+```
+
+---
+
+Secret type can assume one of the following values:
+
+```markdown
+- generic: Create a Secret from a local file, directory, or literal value.
+- docker-registry: Creates a dockercfg Secret used to authenticate against Docker registries.
+- tls: Create a TLS secret from the given public/private key pair
+```
+
+Now we want to create a tls secret which can be used within or appication:
+
+```shell
+$ kubectl create secret tls cert-secret --key tls.key --cert tls.crt
+```
+
+As well as ConfigMaps, a Secret can be then consumed file or env variable
+
+---
+
