@@ -365,8 +365,45 @@ spec:
 
 ---
 
-# Services & Ingress 🌐 
+# Services & Ingress 🌐
 
+A [Service](https://kubernetes.io/docs/concepts/services-networking/service/) allows to decouple the network layer ftom the backend application, since Pods may be killed, moved from Node to Node and so on.
+
+Among others, Service type can be:
+
+```markdown
+- ClusterIP (default): exposes the service on a cluster-internal IP, only reachable from within the cluster
+- NodePort: you’ll be able to contact the NodePort Service from outside the cluster by requesting <NodeIP>:<NodePort>.
+- LoadBalancer: exposes the Service externally using a cloud provider’s load balancer
+```
+
+---
+
+The association between the Pods and the Service is made through the selectors:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-rest-service-svc
+spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    service-pod: simple-rest-service-pod
+```
+
+---
+
+# Ingress
+
+An [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+
+> ``` exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.```
+
+Through an Ingress controller (most famous one is the [NGINX](https://kubernetes.github.io/ingress-nginx/) ), provides routing rules, SSL terrmination and other
 
 ---
 
