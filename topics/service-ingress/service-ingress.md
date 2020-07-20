@@ -29,7 +29,7 @@ In the tls section you can reference a secret containing the certificate
 ````
 To create the certificate you can use openssl
 ```shell script
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=diegopuzza.com/O=diegopuzza.com"
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=testdomain.com/O=testdomain.com"
 ```
 And then add the certificate to a secret
 

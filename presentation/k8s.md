@@ -30,11 +30,11 @@ Markdown Presentation With [Marp](https://marp.app/)
 - ConfigMap & Secret
 - Volumes
 - Service & Ingress
-- Tiny working application
-- CLI Tools (k9s, kubectx/kubens, stern)
+- Demo Time
+- CLI Tools
 ```
-
 ---
+
 # But first... What actually is Kubernetes?
 
 <br/>
@@ -65,6 +65,8 @@ Google provides the Google Cloud SDK which allows to register your project-based
 $ gcloud container clusters get-credentials  <cluster-name> --zone <zone> --project <project-id>
 ```
 
+---
+
 It will create the `kubeconfig` entry in your machine; now run:
 
 ```shell
@@ -90,13 +92,14 @@ Pod containers are always co-located and co-scheduled, and run in a shared conte
 Kubernetes will then control the lifecycle of the pods, on which node they will be installed and so on
 
 ---
-# Deployment
+
+# Deployment ⛵️
 
 A [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) describes a multiple set of identical Pod, how they are deployed and replicated in the cluster.
 
 <br/>
 
-Let's say we want deploy an instance of `nginx`
+Let's say we want to deploy an instance of `nginx`
 
 ---
 
@@ -182,7 +185,7 @@ resources:
 
 ---
 
-# ConfigMap
+# ConfigMap 🗂
 
 [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) allows to separate configurations from the container image.
 
@@ -217,49 +220,9 @@ Or, using a single file and the flag `--from-env-file`
 
 ---
 
-## Using it as volume
+# Secret 🔐
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod
-spec:
-  containers:
-    - name: test-pod
-      image: test-pod
-      volumeMounts:
-      - name: foobarvol
-        mountPath: /config
-  volumes:
-    - name: foobarvol
-      configMap:
-        name: foobar
-```
-
----
-
-You can also set the property `items` in order to get only the file you actually need
-
-```yaml
-  ...
-      volumeMounts:
-      - name: foobarvol
-        mountPath: /config
-  volumes:
-    - name: foobarvol
-      configMap:
-        name: foobar
-        items:
-        - key: foo.properties
-          path: foonew.properties
-```
-
----
-
-# Secrets
-
-[Secrets](https://cloud.google.com/kubernetes-engine/docs/concepts/secret) contains a small amount of sensitive data such as a password, a token, or a key
+A [Secret](https://cloud.google.com/kubernetes-engine/docs/concepts/secret) contains a small amount of sensitive data such as a password, a token, or a key
 
 Secrets can be created through a YAML file or through `kubectl` by running `kubectl create secret type name data`:
 
@@ -277,13 +240,148 @@ Secret type can assume one of the following values:
 - tls: Create a TLS secret from the given public/private key pair
 ```
 
-Now we want to create a tls secret which can be used within or appication:
+To create the certificate you can use openssl
 
 ```shell
-$ kubectl create secret tls cert-secret --key tls.key --cert tls.crt
+$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=testdomain.com/O=testdomain.com"
 ```
 
-As well as ConfigMaps, a Secret can be then consumed file or env variable
+And then add the certificate to a secret
+
+```shell
+$ k create secret tls cert-secret --key ./tls.key --cert ./tls.crt
+```
 
 ---
 
+# Volumes 🗄
+
+A [Volume](https://kubernetes.io/docs/concepts/storage/volumes/) is a directory which is accessible to the Containers in a Pod.
+
+`emptyDir`: created when a Pod is assigned to a Node
+
+```yaml
+...
+spec:
+  containers:
+  - image: k8s.gcr.io/test-webserver
+    name: test-container
+    volumeMounts:
+    - mountPath: /cache
+      name: cache-volume
+  volumes:
+  - name: cache-volume
+    emptyDir: {}
+```
+
+---
+
+`ConfigMaps and Secrets`: they are basically emptyDir volumes containing the file configured as ConfigMaps and Secrets
+
+```yaml
+...
+spec:
+  containers:
+    - name: test-pod
+      image: test-pod
+      volumeMounts:
+      - name: foobarvol
+        mountPath: /config
+  volumes:
+    - name: foobarvol
+      configMap:
+        name: foobar
+```
+
+---
+`PersistentVolume (PV)`: is a piece of storage in the cluster
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: db
+spec:
+  capacity: # allocated space for this volume
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce # ReadOnlyMany, ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain # Delete
+  storageClassName: standard # a way to describe what providers offer
+  gcePersistentDisk: # phisical disk info
+    pdName: gke-XXX
+    fsType: ext4
+```
+
+---
+
+`PersistentVolumeClaim (PVC)` is a request for storage with specific size and access modes (e.g., they can be mounted once read/write or many times read-only)
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+---
+
+Checking the status with `kubectl` and `get` command:
+
+```shell
+$ k get persistentvolume
+NAME   CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM              STORAGECLASS   REASON   AGE
+db     1Gi        RWO            Retain           Bound    default/db-claim   standard                26m
+
+$ k get persistentvolumeclaim
+NAME       STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+db-claim   Bound    db       1Gi        RWO            standard       16m
+```
+
+---
+
+Using a PVC is the same as using an other type of volume:
+
+```yaml
+...
+spec:
+  containers:
+    - name: db
+      image: my-db
+      volumeMounts:
+      - mountPath: "/db"
+        name: myDb
+  volumes:
+    - name: myDb
+      persistentVolumeClaim:
+        claimName: db-claim
+```
+
+---
+
+# Services & Ingress 🌐 
+
+
+---
+
+# Demo Time 🤞🤞
+
+---
+
+# Appendix: Useful CLI tools 🤩
+
+- [`kubectx` `kubens`](https://github.com/ahmetb/kubectx): utilities to quickly switch among contexts and namespaces
+
+- [`k9s`](https://github.com/derailed/k9s): CLI graphic interface to interrogate and manage Kubernetes cluster
+
+- [`stern`](https://github.com/wercker/stern): advanced real-time logging tool
+
+---
+
+# Grazie ✌️🥳✌️
