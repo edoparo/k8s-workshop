@@ -10,42 +10,46 @@ marp: true
 
 ![bg left:40% 80%](./img/k8s_logo.png)
 
-# **Kubernetes Basics**
-
-Markdown Presentation With [Marp](https://marp.app/)
+# **Kubernetes - Getting Started**
 
 ---
 
-# Table of contents 🤯
-
-##### This presentation is intended to explore the Kubernetes Basics.
+# What is Kubernetes for real?
 
 <br/>
-**We're gonna use the GKE (Google Kubernetes Engine) on t he GCP (Google Cloud Platform)
+
+Official documentation defines it as
+
+> ### Production-Grade Container Orchestration 🧐
+
+
+---
+# Why should you care
+
+- Widely used
+- Isolation and decoupling of entities
+- Enlarge your application 🌎
+- Your CV (just in case)
+
+---
+
+### Your first web server with Kubernetes - Agenda 🚀
 
 ```markdown
-- kubectl  
+- Using kubectl  
 - GKE registration
-- Deploy a pod
-- ConfigMap & Secret
+- Deploying a Pod
+- ConfigMaps & Secrets
 - Volumes
 - Service & Ingress
 - Demo Time
 - CLI Tools
 ```
----
-
-# But first... What actually is Kubernetes?
-
-<br/>
-
-They define it as
-
-> ### Production-Grade Container Orchestration 🧐
 
 ---
 
-# kubectl
+
+# Using kubectl 🤓⌨️
 
 As [documentation](https://kubernetes.io/docs/reference/kubectl/kubectl/) states:
 
@@ -64,10 +68,12 @@ Google provides the Google Cloud SDK which allows to register your project-based
 ```shell
 $ gcloud container clusters get-credentials  <cluster-name> --zone <zone> --project <project-id>
 ```
+This will create the `kubeconfig` entry in your machine.
 
 ---
 
-It will create the `kubeconfig` entry in your machine; now run:
+
+You can list your contexts with:
 
 ```shell
 $ k config get-contexts
@@ -75,7 +81,10 @@ $ k config get-contexts
 CURRENT   NAME                  CLUSTER               AUTHINFO                                          NAMESPACE
 *         gke_abiding-orb-XXX   gke_abiding-orb-XXX   gke_abiding-orb-XXX
 
-# if you have more than one context use the following 
+```
+
+if you have more than one context use the following: 
+```shell
 $ k config use-context gke_abiding-orb-XXX
 ```
 
@@ -95,7 +104,7 @@ Kubernetes will then control the lifecycle of the pods, on which node they will 
 
 # Deployment ⛵️
 
-A [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) describes a multiple set of identical Pod, how they are deployed and replicated in the cluster.
+A [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) describes a set of identical Pods (Replica Set), how they are deployed and replicated in the cluster.
 
 <br/>
 
@@ -171,7 +180,7 @@ $ k scale deployment nginx-deployment --replicas=4
 
 ## Resources Limits & Requests
 
-Very often, will be required to adjust resources (CPU and Memory) to a deployment. To do so, you will add the following snippet to the deployment under the `.spec.containers[X]`:
+Very often will be required to adjust resources (CPU and Memory) to a deployment. To do so, you can add the following snippet to the deployment under the `.spec.containers[X]`:
 
 ```yaml
 resources:
@@ -366,6 +375,8 @@ spec:
 ---
 
 # Services & Ingress 🌐
+
+### How can people view my beautiful application?
 
 A [Service](https://kubernetes.io/docs/concepts/services-networking/service/) allows to decouple the network layer ftom the backend application, since Pods may be killed, moved from Node to Node and so on.
 
