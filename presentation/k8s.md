@@ -28,7 +28,7 @@ Official documentation defines it as
 
 - Widely used
 - Isolation and decoupling of entities
-- Enlarge your application 🌎
+- Scaling
 - Your CV (just in case)
 
 ---
@@ -88,6 +88,11 @@ if you have more than one context use the following:
 $ k config use-context gke_abiding-orb-XXX
 ```
 
+--- 
+
+![bg width:790px left:63%](./img/Untitled%20Diagram.png)
+
+## The Web Server Architecture
 ---
 
 # 🐳🐳 Pod 🐳🐳
@@ -104,11 +109,11 @@ Kubernetes will then control the lifecycle of the pods, on which node they will 
 
 # Deployment ⛵️
 
-A [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) describes a set of identical Pods (Replica Set), how they are deployed and replicated in the cluster.
+A [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) describes a set of identical Pods (called [`ReplicaSet`](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)), how they are deployed and replicated in the cluster and provides declarative updates to Pods.
 
 <br/>
 
-Let's say we want to deploy an instance of `nginx`
+Let's say we want to deploy an instance of an `nginx` HTTP Server (although not very useful here)
 
 ---
 
