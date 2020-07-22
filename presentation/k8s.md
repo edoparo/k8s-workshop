@@ -268,7 +268,7 @@ $ k create secret tls cert-secret --key ./tls.key --cert ./tls.crt
 
 ---
 
-# Volumes 🗄
+# Volume 🗄
 
 A [Volume](https://kubernetes.io/docs/concepts/storage/volumes/) is a directory which is accessible to the Containers in a Pod.
 
@@ -379,11 +379,11 @@ spec:
 
 ---
 
-# Services & Ingress 🌐
+# Service 🌐
 
-### How can people view my beautiful application?
+#### How can people view my beautiful application?
 
-A [Service](https://kubernetes.io/docs/concepts/services-networking/service/) allows to decouple the network layer ftom the backend application, since Pods may be killed, moved from Node to Node and so on.
+A [Service](https://kubernetes.io/docs/concepts/services-networking/service/) allows to decouple the network layer from the backend application, since Pods may be killed, moved from Node to Node and so on.
 
 Among others, Service type can be:
 
@@ -413,13 +413,13 @@ spec:
 
 ---
 
-# Ingress
+# Ingress 🔀
 
 An [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
-> ``` exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.```
+> ```exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.```
 
-Through an Ingress controller (most famous one is the [NGINX](https://kubernetes.github.io/ingress-nginx/) ), provides routing rules, SSL terrmination and other
+Through a controller (most famous one is the [NGINX](https://kubernetes.github.io/ingress-nginx/) ), the Ingress provides routing rules, SSL termination and other features
 
 ---
 
