@@ -22,8 +22,8 @@ Official documentation defines it as
 
 > ### Production-Grade Container Orchestration 🧐
 
-
 ---
+
 # Why should you care
 
 - Widely used
@@ -48,7 +48,6 @@ Official documentation defines it as
 
 ---
 
-
 # Using kubectl 🤓⌨️
 
 As [documentation](https://kubernetes.io/docs/reference/kubectl/kubectl/) states:
@@ -68,10 +67,10 @@ Google provides the Google Cloud SDK which allows to register your project-based
 ```shell
 $ gcloud container clusters get-credentials  <cluster-name> --zone <zone> --project <project-id>
 ```
+
 This will create the `kubeconfig` entry in your machine.
 
 ---
-
 
 You can list your contexts with:
 
@@ -83,16 +82,18 @@ CURRENT   NAME                  CLUSTER               AUTHINFO                  
 
 ```
 
-if you have more than one context use the following: 
+if you have more than one context use the following:
+
 ```shell
 $ k config use-context gke_abiding-orb-XXX
 ```
 
---- 
-
-![bg width:790px left:63%](./img/Untitled%20Diagram.png)
+---
 
 ## The Web Server Architecture
+
+![bg width:790px right:60%](./img/Untitled%20Diagram.png)
+
 ---
 
 # 🐳🐳 Pod 🐳🐳
@@ -195,7 +196,7 @@ resources:
   requests:
     cpu: 50m
     memory: 500Mi
-``` 
+```
 
 ---
 
