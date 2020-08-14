@@ -37,7 +37,7 @@ Official documentation defines it as
 
 ```markdown
 - Using kubectl  
-- GKE registration
+- Minikube
 - Deploying a Pod
 - ConfigMaps & Secrets
 - Volumes
@@ -60,15 +60,9 @@ If you are using `oh-my-zsh` you can enable the `kubectl` plugin which provides 
 
 ---
 
-# GKE Registration
+# Minikube
 
-Google provides the Google Cloud SDK which allows to register your project-based cluster on your machine. Here is the [quickstart](https://cloud.google.com/sdk/docs/quickstart-linux)
-
-```shell
-$ gcloud container clusters get-credentials  <cluster-name> --zone <zone> --project <project-id>
-```
-
-This will create the `kubeconfig` entry in your machine.
+## TODO
 
 ---
 
@@ -85,7 +79,7 @@ CURRENT   NAME                  CLUSTER               AUTHINFO                  
 if you have more than one context use the following:
 
 ```shell
-$ k config use-context gke_abiding-orb-XXX
+$ k config use-context minikube
 ```
 
 ---
