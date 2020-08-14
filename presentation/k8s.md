@@ -38,7 +38,7 @@ Official documentation defines it as
 ```markdown
 - Using kubectl  
 - Minikube
-- Deploying a Pod
+- Pod, Deployment & StatefulSet
 - ConfigMaps & Secrets
 - Volumes
 - Service & Ingress
@@ -191,6 +191,12 @@ resources:
     cpu: 50m
     memory: 500Mi
 ```
+
+---
+
+# StatefulSet
+
+## TODO
 
 ---
 
