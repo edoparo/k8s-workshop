@@ -38,9 +38,10 @@ Official documentation defines it as
 ```markdown
 - Using kubectl  
 - Minikube
-- Pod, Deployment & StatefulSet
+- Pod, Deployment
 - ConfigMaps & Secrets
 - Volumes
+- StatefulSet
 - Service & Ingress
 - Demo Time
 - CLI Tools
@@ -62,21 +63,27 @@ If you are using `oh-my-zsh` you can enable the `kubectl` plugin which provides 
 
 # Minikube
 
-## TODO
+`Minikube` is a tool which allows to run a simple Kubernetes cluster on your machine. 
+
+Assuming to have Minikube already [installed](https://kubernetes.io/docs/tasks/tools/install-minikube/) locally (for those using mac, it can be installed with `homebrew`), just run the following to start it up:
+
+```shell
+$ minikube start
+```
 
 ---
 
-You can list your contexts with:
+Once `Minikube` is up and running, you can list your contexts with:
 
 ```shell
 $ k config get-contexts
 
 CURRENT   NAME                  CLUSTER               AUTHINFO                                          NAMESPACE
-*         gke_abiding-orb-XXX   gke_abiding-orb-XXX   gke_abiding-orb-XXX
+*         minikube              minikube              minikube
 
 ```
 
-if you have more than one context use the following:
+if you have more than one context use the following to select `Minikube`:
 
 ```shell
 $ k config use-context minikube
@@ -191,12 +198,6 @@ resources:
     cpu: 50m
     memory: 500Mi
 ```
-
----
-
-# StatefulSet
-
-## TODO
 
 ---
 
@@ -377,6 +378,21 @@ spec:
       persistentVolumeClaim:
         claimName: db-claim
 ```
+
+---
+
+# StatefulSet
+
+Unlike a `Deployment`, a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) manages Pods containing stateful applications. StatefulSet guarantees:
+  
+```markdown
+- Incremental and unique Pod identifier
+- Deploy, scaling and deletion order
+- Stable hostname
+- Persistent Volume Claim creation through `volumeClaimTemplates` keyword
+```
+
+In our case, the database will persist data onto the disk, so the SatefulSet suites our needs.
 
 ---
 
