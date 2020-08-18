@@ -270,7 +270,7 @@ $ k create secret tls cert-secret --key ./tls.key --cert ./tls.crt
 
 ---
 
-# Volume 🗄
+# Volume 💾
 
 A [Volume](https://kubernetes.io/docs/concepts/storage/volumes/) is a directory which is accessible to the Containers in a Pod.
 
@@ -381,7 +381,7 @@ spec:
 
 ---
 
-# StatefulSet
+# StatefulSet 🗄
 
 Unlike a `Deployment`, a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) manages Pods containing stateful applications. StatefulSet guarantees:
   
