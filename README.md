@@ -14,7 +14,3 @@ We're gonna use the `GKE (Google Kubernetes Engine)` on the `GCP (Google Cloud P
 - Helm & Tiller
 - Monitoring with prometheus
 - Istio
-
-### Example
-
-[Here](application) you can find a micro application where a very basic [microservice](service) connects to the db ( a Mongodb instance installed as pod ) and retrieves the content of the `testcollection` collection 
