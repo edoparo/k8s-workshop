@@ -1,6 +1,23 @@
-# Application setup
+# Demo time
 
-## Order
+## Minikube setup
+
+1. `$ minikube start --driver=hyperkit`
+2. `$ minikube addons enable ingress`
+
+### Using local images with minikube
+
+1. `$ eval $(minikube docker-env)`
+2. Node
+   1. `$  docker build -t kubeexampleservicerest .`
+3. Java
+   1. `$ ./mvnw spring-boot:build-image`
+
+```markdown
+NB: Remember to Set `imagePullPolicy: Never` into `deployment.yml`
+```
+
+## Application setup
 
 1. Volume
    1. `persistentvolume.yml`
@@ -37,13 +54,10 @@
       3. `java/app_service.yml`
       4. `java/app_ingress.yml`
 
-# Minikube
+5. Get the ingress address with `k get ingress` and change `/etc/hosts` by adding
 
-1. `$ minikube start`
-2. `$ minikube addons enable ingress`
+```text
+<ingress address> testdomain.com
+```
 
-## Using local images with minikube
-
-1. `$ eval $(minikube docker-env)`
-2. `docker build -t <image-tag> .`
-3. Set `imagePullPolicy: Never` into `deployment.yml`
+6. Check connection `telnet testdomain.com 443`
