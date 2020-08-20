@@ -1,6 +1,0 @@
-apiVersion: v1
-data:
-  config.json: "{\r\n  \"mongo_url\" : \"mongodb\"\r\n}"
-kind: ConfigMap
-metadata:
-  name: service-rest-conf
