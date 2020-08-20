@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-rest
+  labels:
+    service: service-rest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service-pod: service-rest-pod
+  template:
+    metadata:
+      labels:
+        service-pod: service-rest-pod
+    spec:
+      containers:
+        - name: service-rest
+          image: kubeexampleservicerest-java:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: MONGO_ROOT_USERNAME
+            - name: MONGO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: MONGO_ROOT_PASSWORD
+          volumeMounts:
+            - name: application-config 
+              mountPath: "/workspace/BOOT-INF/classes/application.properties"
+              subPath: application.properties
+              readOnly: true
+          resources:
+            limits:
+              cpu: "500m"
+            requests:
+              cpu: "250m"
+      volumes:
+        - name: application-config
+          configMap:
+            name: service-rest-conf

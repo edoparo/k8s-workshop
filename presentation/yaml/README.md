@@ -20,10 +20,22 @@
    ```
 
 4. Application
-   1. `app_configmap.yml`
-   2. `app_deployment.yml`
-   3. `app_service.yml`
-   4. `app_ingress.yml`
+   1. Node
+      1. `node/app_configmap.yml`
+      2. `node/app_deployment.yml`
+      3. `node/app_service.yml`
+      4. `node/app_ingress.yml`
+   2. Java
+      1. Configmap
+
+      ```shell
+      $ kubectl create configmap service-rest-conf --from-file=java/application.properties
+      configmap/service-rest-conf created
+      ```
+
+      2. `java/app_deployment.yml`
+      3. `java/app_service.yml`
+      4. `java/app_ingress.yml`
 
 # Minikube
 
