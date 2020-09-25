@@ -29,7 +29,7 @@ NB: Remember to Set `imagePullPolicy: Never` into `deployment.yml`
 3. Certificate
 
    ```shell
-   $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls crt -subj "/CN=testdomain.com/O=testdomain.com"
+   $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=testdomain.com/O=testdomain.com"
    ---
 
    $ k create secret tls cert-secret --key ./tls.key --cert ./tls.crt
